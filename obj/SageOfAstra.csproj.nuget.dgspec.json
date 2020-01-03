@@ -1,0 +1,76 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/hymnosi/sage/SageOfAstra/SageOfAstra.csproj": {}
+  },
+  "projects": {
+    "/home/hymnosi/sage/SageOfAstra/SageOfAstra.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/hymnosi/sage/SageOfAstra/SageOfAstra.csproj",
+        "projectName": "SageOfAstra",
+        "projectPath": "/home/hymnosi/sage/SageOfAstra/SageOfAstra.csproj",
+        "packagesPath": "/home/hymnosi/.nuget/packages/",
+        "outputPath": "/home/hymnosi/sage/SageOfAstra/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/hymnosi/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "dependencies": {
+            "Discord.Net.Commands": {
+              "target": "Package",
+              "version": "[1.0.2, )"
+            },
+            "Discord.Net.WebSocket": {
+              "target": "Package",
+              "version": "[1.0.2, )"
+            },
+            "Humanizer": {
+              "target": "Package",
+              "version": "[2.7.9, )"
+            },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[3.1.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.100/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
