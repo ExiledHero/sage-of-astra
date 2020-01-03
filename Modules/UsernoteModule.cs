@@ -67,7 +67,7 @@ namespace SageOfAstra.Modules
             }
 
             _service.DisposeContext();
-            await ReplyAsync("", embed: responseEmbed);
+            await ReplyAsync("", embed: responseEmbed.Build());
             //await ReplyAsync(response.ToString());
         }
 
@@ -117,7 +117,7 @@ namespace SageOfAstra.Modules
                 .WithFooter(x =>
                 {
                     x.Text = $"at {timeStamp.ToString()}";
-                });
+                }).Build();
 
             //var response = $"`({note.Key}) By {authorName} regarding {subjectName} at {timeStamp}:` {note.Content}";
             await ReplyAsync("", embed: responseEmbed);

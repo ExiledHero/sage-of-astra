@@ -8,12 +8,23 @@ using Discord.Commands;
 using Microsoft.Extensions.DependencyInjection;
 using SageOfAstra.Services;
 using SageOfAstra.Configs;
+using Victoria;
 
 namespace SageOfAstra
 {
     class Program
     {
-        static void Main(string[] args) => new Program().Start().GetAwaiter().GetResult();
+        static void Main(string[] args)
+        {
+            try
+            {
+                new Program().Start().GetAwaiter().GetResult();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+        }
 
 
         #region Private fields
@@ -31,7 +42,10 @@ namespace SageOfAstra
         private ModerationService _mod;
         private CommandHandler _commands;
         private CoreConfig _config;
+        //private AudioService _audio;
         #endregion
+
+        public AudioService Audio { get; set; }
 
         public async Task Start()
         {
@@ -45,7 +59,6 @@ namespace SageOfAstra
             });
 
             _client.Log += Log;
-            _client.UserJoined += Client_UserJoined;
 
             // Set up the config directory and core config
             if (!Directory.Exists(Path.Combine(Directory.GetCurrentDirectory(), "config")))
@@ -80,6 +93,7 @@ namespace SageOfAstra
                 _ratelimit.Enable(_ratelimit.Limit);
 
             _blacklist = new BlacklistService(_client, _unpunish, _records, _log, _config);
+            await _blacklist.LoadConfigurationAsync();
 
             _aliases = new AliasTrackingService(_client);
             await _aliases.LoadConfigurationAsync();
@@ -88,24 +102,13 @@ namespace SageOfAstra
             _permissions.LoadPermissions(Assembly.GetEntryAssembly());
             await _permissions.LoadConfigurationAsync();
 
+
             // Instantiate the dependency map and add our services and client to it.
             var serviceProvider = ConfigureServices();
 
             // Set up command handler
-            _commands = new CommandHandler(serviceProvider);
-            await _commands.InstallAsync();
-
-            // Set up an event handler to execute some state-reliant startup tasks
-            _client.Ready += async () =>
-            {
-                await _blacklist.LoadConfigurationAsync();
-                await _client.SetGameAsync("Monitoring GunZ Discord");
-
-                // Send message to the General channel when the bot comes online.
-                ulong id = 458433744492036097;
-                var chnl = _client.GetChannel(id) as IMessageChannel;
-                await chnl.SendMessageAsync("Now monitoring GunZ Discord. Please remember to read <#657367164965355530> and <#458601704124841994> to catch up with what has been happening in the GunZ community!");
-            };
+            _commands = new CommandHandler();
+            await _commands.InstallAsync(serviceProvider);
 
             // Connect to Discord
             await _client.LoginAsync(TokenType.Bot, _config.Token);
@@ -116,13 +119,6 @@ namespace SageOfAstra
 
             // Hang indefinitely
             await Task.Delay(-1);
-
-
-        }
-
-        private async Task Client_UserJoined(SocketGuildUser guildUser)
-        {
-            await guildUser.SendMessageAsync("Welcome to the Official GunZ Community Discord! Please read the <#657367164965355530> and check <#458601704124841994> to catch up on what has been happening in the GunZ community recently. Feel free to message the @Discord Moderator group if you have any questions. Thanks for joining!");
         }
 
         private Task Log(LogMessage m)
@@ -159,6 +155,7 @@ namespace SageOfAstra
             services.AddSingleton(_ratelimit);
             services.AddSingleton(_client);
             services.AddSingleton(_config);
+            //services.AddSingleton(_audio);
             services.AddSingleton(new CommandService());
 
             return new DefaultServiceProviderFactory().CreateServiceProvider(services);

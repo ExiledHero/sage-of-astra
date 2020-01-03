@@ -36,28 +36,14 @@ namespace SageOfAstra.Modules
                     x.IsInline = true;
                     x.Name = "ID";
                     x.Value = user.Id.ToString();
-                });
-
-            if (user.Nickname != null)
-            {
-                response.AddField(x =>
+                }).
+                AddField(x =>
                 {
                     x.IsInline = true;
                     x.Name = "Nickname";
                     x.Value = user.Nickname;
-                });
-            }
-            if (user.Game.HasValue)
-            {
-                response.AddField(x =>
-                {
-                    x.IsInline = true;
-                    x.Name = "Game";
-                    x.Value = user.Game.Value.Name;
-                });
-            }
-            response
-                .AddField(x =>
+                }).
+                AddField(x =>
                 {
                     x.IsInline = true;
                     x.Name = "Status";
@@ -84,6 +70,7 @@ namespace SageOfAstra.Modules
                     x.Name = "Roles";
                     x.Value = string.Join(", ", user.Roles.Select(r => r.Name));
                 });
+
             var usernames = await _aliases.GetUsernamesAsync(user.Id);
             if (usernames.Count() != 0)
             {
@@ -110,7 +97,11 @@ namespace SageOfAstra.Modules
                     x.Value = nicknamesList.ToString();
                 });
             }
-            await ReplyAsync("", embed: response);
+
+            //response.Build();
+            //Like wtf, I did that and it gave error
+            //ready for ezclap? gg
+            await ReplyAsync("", embed: response.Build());
         }
 
         [Command("records")]
@@ -309,7 +300,7 @@ namespace SageOfAstra.Modules
                     x.IsInline = false;
                     x.Name = "Roles";
                     x.Value = string.Join(", ", Context.Guild.Roles.Select(r => r.Name));
-                });
+                }).Build();
             await ReplyAsync("", embed: response);
         }
 

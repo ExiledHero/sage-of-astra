@@ -18,7 +18,7 @@ namespace SageOfAstra.Preconditions
             Permission = permission;
         }
 
-        public async override Task<PreconditionResult> CheckPermissions(ICommandContext context, CommandInfo command, IServiceProvider services)
+        public override async Task<PreconditionResult> CheckPermissionsAsync(ICommandContext context, CommandInfo command, IServiceProvider services)
         {
             var service = services.GetService<PermissionsService>();
             var config = services.GetService<CoreConfig>();

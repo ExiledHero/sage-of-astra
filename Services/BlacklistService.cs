@@ -16,11 +16,11 @@ namespace SageOfAstra.Services
 {
     public class BlacklistService
     {
-        private DiscordSocketClient _client;
-        private UnpunishService _unpunish;
-        private LogService _log;
-        private RecordService _records;
-        private CoreConfig _config;
+        public DiscordSocketClient _client { get; set; }
+        public UnpunishService _unpunish { get; set; }
+        public LogService _log { get; set; }
+        public RecordService _records { get; set; }
+        public CoreConfig _config { get; set; }
 
         public List<ChannelBlacklist> ChannelBlacklists { get; private set; }
 
@@ -150,6 +150,11 @@ namespace SageOfAstra.Services
             ChannelBlacklists = new List<ChannelBlacklist>();
             GlobalBlacklist = new GlobalBlacklist();
             _client.MessageReceived += _client_MessageReceived_Blacklist;
+        }
+
+        public BlacklistService()
+        {
+
         }
     }
 }

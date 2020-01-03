@@ -23,6 +23,7 @@ namespace SageOfAstra.Modules
         private LogService _log;
         private CoreConfig _config;
 
+
         #region Banning
         [Command("pban"), Alias("perm", "perma", "permban", "permaban")]
         [Summary("Permanently bans a user from the server.")]

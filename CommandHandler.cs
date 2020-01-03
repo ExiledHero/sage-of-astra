@@ -19,19 +19,21 @@ namespace SageOfAstra
         private CoreConfig _config;
         private LogService _log;
 
-        public CommandHandler(IServiceProvider services)
+        public CommandHandler()
         {
-            _client = services.GetService<DiscordSocketClient>();
-            _config = services.GetService<CoreConfig>();
-            _log = services.GetService<LogService>();
-            _commands = services.GetService<CommandService>();
-            _services = services;
+
         }
 
-        public async Task InstallAsync()
+        public async Task InstallAsync(IServiceProvider serviceProvider = null)
         {
+            _client = serviceProvider.GetService<DiscordSocketClient>();
+            _config = serviceProvider.GetService<CoreConfig>();
+            _log = serviceProvider.GetService<LogService>();
+            _commands = serviceProvider.GetService<CommandService>();
+            _services = serviceProvider;
+
             _client.MessageReceived += HandleCommandAsync;
-            await _commands.AddModulesAsync(Assembly.GetEntryAssembly());
+            await _commands.AddModulesAsync(Assembly.GetEntryAssembly(), serviceProvider);
         }
 
         public async Task HandleCommandAsync(SocketMessage m)

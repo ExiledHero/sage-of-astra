@@ -9,7 +9,7 @@ namespace SageOfAstra.Preconditions
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
     class RequireMasterAttribute : PreconditionAttribute
     {
-        public async override Task<PreconditionResult> CheckPermissions(ICommandContext context, CommandInfo command, IServiceProvider map)
+        public override async Task<PreconditionResult> CheckPermissionsAsync(ICommandContext context, CommandInfo command, IServiceProvider map)
         {
             var config = map.GetService<CoreConfig>();
 
