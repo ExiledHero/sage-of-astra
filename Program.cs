@@ -6,19 +6,47 @@ using Discord;
 using Discord.WebSocket;
 using Discord.Commands;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using SageOfAstra.Services;
 using SageOfAstra.Configs;
-using Victoria;
+using Microsoft.Extensions.Configuration;
+//using Victoria;
 
 namespace SageOfAstra
 {
     class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             try
             {
                 new Program().Start().GetAwaiter().GetResult();
+
+                var builder = new HostBuilder()
+                .ConfigureAppConfiguration((hostingContext, config) =>
+                {
+                    config.AddEnvironmentVariables();
+
+                    if (args != null)
+                    {
+                    config.AddCommandLine(args);
+                    }
+                })
+                .ConfigureServices((hostContext, services) =>
+                {
+                    services.AddOptions();
+                    services.Configure<DaemonConfig>(hostContext.Configuration.GetSection("Daemon"));
+
+                    services.AddSingleton<IHostedService, DaemonService>();
+                })
+                .ConfigureLogging((hostingContext, logging) =>
+                {
+                    logging.AddConfiguration(hostingContext.Configuration.GetSection("Logging"));
+                    logging.AddConsole();
+                });
+
+                await builder.RunConsoleAsync();
             }
             catch (Exception ex)
             {
