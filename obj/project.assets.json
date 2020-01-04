@@ -786,18 +786,6 @@
           "lib/netcoreapp3.1/Microsoft.Extensions.Configuration.Binder.dll": {}
         }
       },
-      "Microsoft.Extensions.Configuration.CommandLine/3.1.0": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.Extensions.Configuration": "3.1.0"
-        },
-        "compile": {
-          "lib/netcoreapp3.1/Microsoft.Extensions.Configuration.CommandLine.dll": {}
-        },
-        "runtime": {
-          "lib/netcoreapp3.1/Microsoft.Extensions.Configuration.CommandLine.dll": {}
-        }
-      },
       "Microsoft.Extensions.DependencyInjection/3.1.0": {
         "type": "package",
         "dependencies": {
@@ -3566,22 +3554,6 @@
         "lib/netstandard2.0/Microsoft.Extensions.Configuration.Binder.xml",
         "microsoft.extensions.configuration.binder.3.1.0.nupkg.sha512",
         "microsoft.extensions.configuration.binder.nuspec",
-        "packageIcon.png"
-      ]
-    },
-    "Microsoft.Extensions.Configuration.CommandLine/3.1.0": {
-      "sha512": "KDjz4HBw549oW4Y1eQAImAugCSYn84KXwgGZtgMqEwctvkdxZo0ObZC5QQI/YvX21U+DArR9+NfWZ3MxD9MhPA==",
-      "type": "package",
-      "path": "microsoft.extensions.configuration.commandline/3.1.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "lib/netcoreapp3.1/Microsoft.Extensions.Configuration.CommandLine.dll",
-        "lib/netcoreapp3.1/Microsoft.Extensions.Configuration.CommandLine.xml",
-        "lib/netstandard2.0/Microsoft.Extensions.Configuration.CommandLine.dll",
-        "lib/netstandard2.0/Microsoft.Extensions.Configuration.CommandLine.xml",
-        "microsoft.extensions.configuration.commandline.3.1.0.nupkg.sha512",
-        "microsoft.extensions.configuration.commandline.nuspec",
         "packageIcon.png"
       ]
     },
@@ -8042,35 +8014,28 @@
       "Discord.Net.Commands >= 1.0.2",
       "Discord.Net.WebSocket >= 1.0.2",
       "Humanizer >= 2.7.9",
-      "Microsoft.EntityFrameworkCore.Sqlite >= 3.1.0",
-      "Microsoft.Extensions.Configuration.CommandLine >= 3.1.0"
+      "Microsoft.EntityFrameworkCore.Sqlite >= 3.1.0"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Hymn\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "/home/hymnosi/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Hymn\\Desktop\\sage\\SageOfAstra.csproj",
+      "projectUniqueName": "/home/hymnosi/sage/SageOfAstra/SageOfAstra.csproj",
       "projectName": "SageOfAstra",
-      "projectPath": "C:\\Users\\Hymn\\Desktop\\sage\\SageOfAstra.csproj",
-      "packagesPath": "C:\\Users\\Hymn\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Hymn\\Desktop\\sage\\obj\\",
+      "projectPath": "/home/hymnosi/sage/SageOfAstra/SageOfAstra.csproj",
+      "packagesPath": "/home/hymnosi/.nuget/packages/",
+      "outputPath": "/home/hymnosi/sage/SageOfAstra/obj/",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Hymn\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/home/hymnosi/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -8102,10 +8067,6 @@
           "Microsoft.EntityFrameworkCore.Sqlite": {
             "target": "Package",
             "version": "[3.1.0, )"
-          },
-          "Microsoft.Extensions.Configuration.CommandLine": {
-            "target": "Package",
-            "version": "[3.1.0, )"
           }
         },
         "imports": [
@@ -8123,7 +8084,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.100/RuntimeIdentifierGraph.json"
       }
     }
   }

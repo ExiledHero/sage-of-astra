@@ -8,7 +8,7 @@ using Discord.Commands;
 using Microsoft.Extensions.DependencyInjection;
 using SageOfAstra.Services;
 using SageOfAstra.Configs;
-// using Victoria;
+using Victoria;
 
 namespace SageOfAstra
 {
